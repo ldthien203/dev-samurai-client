@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -9,18 +9,47 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from '@/components/ui/form'
+import Logo from '@/components/Logo'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { FcGoogle } from 'react-icons/fc'
 import { FaMicrosoft } from 'react-icons/fa'
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi'
+import { NavLink } from 'react-router'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { formSchema } from '@/lib/schemas'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      gmail: '',
+      password: '',
+    },
+  })
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values)
+  }
+
   return (
-    <>
-      <Card className="w-full max-w-xs min-w-xs text-left">
+    <div className="min-h-screen flex-col justify-center items-start">
+      <Logo />
+      <Card className="w-full max-w-xs min-w-xs text-left px-2 mt-5">
         <CardHeader>
           <CardTitle className="text-weight: 700">
             Sign in to your account
@@ -30,50 +59,75 @@ const Login = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                    <FiMail />
-                  </span>
-                  <Input id="email" type="email" required className="pl-10" />
-                </div>
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline text-black underline"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                    <FiLock />
-                  </span>
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    className="pl-10"
-                  />
-                  <span
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={
-                      showPassword ? 'Hide password' : 'Show password'
-                    }
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </span>
-                </div>
-              </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
+              <FormField
+                control={form.control}
+                name="gmail"
+                render={({ field }) => (
+                  <FormItem className="mb-5">
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                          <FiMail />
+                        </span>
+                        <Input
+                          id="email"
+                          type="email"
+                          required
+                          className="pl-10"
+                          {...field}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="mb-5">
+                    <FormLabel htmlFor="password">
+                      Password
+                      <NavLink
+                        to="#"
+                        className="ml-auto inline-block font-normal text-sm underline-offset-4 hover:underline text-black underline"
+                      >
+                        Forgot password?
+                      </NavLink>
+                    </FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                          <FiLock />
+                        </span>
+                        <Input
+                          id="password"
+                          type={showPassword ? 'text' : 'password'}
+                          required
+                          className="pl-10"
+                          {...field}
+                        />
+                        <span
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
+                          onClick={() => setShowPassword((prev) => !prev)}
+                          tabIndex={0}
+                          role="button"
+                          aria-label={
+                            showPassword ? 'Hide password' : 'Show password'
+                          }
+                        >
+                          {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </span>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <Button
                 variant="default"
                 size="lg"
@@ -82,8 +136,8 @@ const Login = () => {
               >
                 Sign In
               </Button>
-            </div>
-          </form>
+            </form>
+          </Form>
           <div className="flex items-center mt-6">
             <div className="flex-grow h-px bg-gray-200" />
             <span className="mx-2 text-xs text-gray-500">Or continue with</span>
@@ -111,13 +165,13 @@ const Login = () => {
         <CardDescription className="text-center">
           Don't have an account?
           <span className="ml-2">
-            <a href="#" className="underline font-medium">
+            <NavLink to="/auth/sign-up" className="underline font-medium">
               Sign up
-            </a>
+            </NavLink>
           </span>
         </CardDescription>
       </Card>
-    </>
+    </div>
   )
 }
 
