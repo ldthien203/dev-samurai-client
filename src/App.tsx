@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import './App.css'
 import MainLayout from './layout/MainLayout'
-import Home from './pages/Home'
+import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import { ReactNode } from 'react'

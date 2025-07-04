@@ -4,14 +4,30 @@ import { Button } from '@/components/ui/button'
 import { ReactNode, useState } from 'react'
 
 const features: { label: string; icon: ReactNode; image: string }[] = [
-  { label: 'Feature 1', icon: <FiBox />, image: '/images/feature1.webp' },
-  { label: 'Feature 2', icon: <FiPlay />, image: '/images/feature2.webp' },
-  { label: 'Feature 3', icon: <FiCalendar />, image: '/images/feature3.webp' },
-  { label: 'Feature 4', icon: <FiFilm />, image: '/images/feature4.webp' },
+  {
+    label: 'Feature 1',
+    icon: <FiBox />,
+    image: '/images/features/feature1.webp',
+  },
+  {
+    label: 'Feature 2',
+    icon: <FiPlay />,
+    image: '/images/features/feature2.webp',
+  },
+  {
+    label: 'Feature 3',
+    icon: <FiCalendar />,
+    image: '/images/features/feature3.webp',
+  },
+  {
+    label: 'Feature 4',
+    icon: <FiFilm />,
+    image: '/images/features/feature4.webp',
+  },
   {
     label: 'Feature 5',
     icon: <IoDocumentTextOutline />,
-    image: '/images/feature5.webp',
+    image: '/images/features/feature5.webp',
   },
 ]
 
@@ -19,7 +35,7 @@ const TitleSection = () => {
   const [activeImg, setActiveImg] = useState(features[0].image)
 
   return (
-    <section className="border-l border-r mt-20">
+    <section className="border-l border-r pt-20">
       <h1 className="scroll-m-20 text-center text-6xl lg:text-4xl sm:text-3xl font-extrabold tracking-tight text-balance">
         Your revolutionary Next.js SaaS
       </h1>

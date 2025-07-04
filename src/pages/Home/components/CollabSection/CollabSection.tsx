@@ -1,4 +1,4 @@
-const DiagonalLineSection = () => {
+const CollabSection = () => {
   return (
     <section className="border border-solid px-7 py-3 bg-diagonal-lines">
       <div className="w-full flex flex-row justify-between">
@@ -8,28 +8,28 @@ const DiagonalLineSection = () => {
         <div className="flex flex-row justify-between items-center gap-5">
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/vercel.png"
+              src="/images/collab/vercel.png"
               alt="vercel-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/deel.png"
+              src="/images/collab/deel.png"
               alt="deel-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/resend.png"
+              src="/images/collab/resend.png"
               alt="resend-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/notion.png"
+              src="/images/collab/notion.png"
               alt="notion-logo"
               className="w-full h-auto object-cover rounded"
             />
@@ -40,4 +40,4 @@ const DiagonalLineSection = () => {
   )
 }
 
-export default DiagonalLineSection
+export default CollabSection
