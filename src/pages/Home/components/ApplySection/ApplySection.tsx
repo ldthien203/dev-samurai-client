@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import './ApplySection.css'
 
 const ApplySection = () => {
   return (

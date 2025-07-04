@@ -1,10 +1,25 @@
 import { FiBox, FiPlay, FiCalendar, FiFilm } from 'react-icons/fi'
 import { IoDocumentTextOutline } from 'react-icons/io5'
 import { Button } from '@/components/ui/button'
+import { ReactNode, useState } from 'react'
+
+const features: { label: string; icon: ReactNode; image: string }[] = [
+  { label: 'Feature 1', icon: <FiBox />, image: '/images/feature1.webp' },
+  { label: 'Feature 2', icon: <FiPlay />, image: '/images/feature2.webp' },
+  { label: 'Feature 3', icon: <FiCalendar />, image: '/images/feature3.webp' },
+  { label: 'Feature 4', icon: <FiFilm />, image: '/images/feature4.webp' },
+  {
+    label: 'Feature 5',
+    icon: <IoDocumentTextOutline />,
+    image: '/images/feature5.webp',
+  },
+]
 
 const TitleSection = () => {
+  const [activeImg, setActiveImg] = useState(features[0].image)
+
   return (
-    <section className="border-l border-r mt-20 pb-10 px-4 sm:px-6 lg:px:8">
+    <section className="border-l border-r mt-20">
       <h1 className="scroll-m-20 text-center text-6xl lg:text-4xl sm:text-3xl font-extrabold tracking-tight text-balance">
         Your revolutionary Next.js SaaS
       </h1>
@@ -17,37 +32,28 @@ const TitleSection = () => {
         <Button variant="outline">Talk to sales</Button>
       </div>
       <ul className="flex flex-row justify-center gap-5 pt-10 text-sm sm:text-base">
-        <li className="flex flex-row gap-2 justify-between items-center">
-          <span>
-            <FiBox />
-          </span>
-          Feature 1
-        </li>
-        <li className="flex flex-row gap-2 justify-between items-center">
-          <span>
-            <FiPlay />
-          </span>
-          Feature 2
-        </li>
-        <li className="flex flex-row gap-2 justify-between items-center">
-          <span>
-            <FiCalendar />
-          </span>
-          Feature 3
-        </li>
-        <li className="flex flex-row gap-2 justify-between items-center">
-          <span>
-            <FiFilm />
-          </span>
-          Feature 4
-        </li>
-        <li className="flex flex-row gap-2 justify-between items-center">
-          <span>
-            <IoDocumentTextOutline />
-          </span>
-          Feature 5
-        </li>
+        {features.map((feature) => (
+          <li
+            key={feature.label}
+            onClick={() => setActiveImg(feature.image)}
+            className={`flex flex-row gap-2 justify-between items-center select-none cursor-pointer py-2 ${
+              activeImg === feature.image
+                ? 'text-black border-b border-black'
+                : 'text-gray-500'
+            }`}
+          >
+            <span>{feature.icon}</span>
+            {feature.label}
+          </li>
+        ))}
       </ul>
+      <div className="relative z-20 bg-background p-1">
+        <img
+          src={activeImg}
+          alt="Feature screenshot"
+          className="border rounded-sm select-none mt-10"
+        />
+      </div>
     </section>
   )
 }
