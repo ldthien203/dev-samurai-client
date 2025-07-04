@@ -1,6 +1,6 @@
 import TitleSection from './components/TitleSection/TitleSection'
 import SidebarSection from './components/SidebarSection/SidebarSection'
-import DiagonalLineSection from './components/CollabSection/CollabSection'
+import CollabSection from './components/CollabSection/CollabSection'
 import FeatureSection from './components/FeatureSection/FeatureSection'
 import ChartSection from './components/ChartSection/ChartSection'
 import Testimonials from './components/Testimonials/Testimonials'
@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <TitleSection />
       <SidebarSection />
-      <DiagonalLineSection />
+      <CollabSection />
       <FeatureSection />
       <ChartSection />
       <Testimonials />

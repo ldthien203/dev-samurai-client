@@ -7,6 +7,8 @@ import {
   FiFilm,
   FiGrid,
   FiCode,
+  FiMenu,
+  FiX,
 } from 'react-icons/fi'
 import { LuBookOpen, LuSendHorizontal } from 'react-icons/lu'
 import { IoDocumentTextOutline } from 'react-icons/io5'
@@ -22,6 +24,13 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { Button } from '../ui/button'
+import { cn } from '@/lib/utils'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 
 const productLists: {
   title: string
@@ -164,7 +173,7 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="items-center gap-2 hidden lg:flex">
           <Button className="bg-white hover:bg-gray-100">
             <WiDaySunny className="text-black" />
           </Button>
@@ -181,7 +190,100 @@ const Navbar = () => {
             Start for free
           </Link>
         </div>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="p-2 rounded-md border lg:hidden"
+        >
+          {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+        </button>
       </div>
+      {mobileOpen && (
+        <div className="lg:hidden w-full px-4 pb-4 pt-2 space-y-4">
+          <div className="flex flex-col gap-2">
+            <Link
+              to="/auth/sign-up"
+              className="w-full text-center px-4 py-2 rounded-md font-medium text-sm bg-black text-white hover:bg-gray-900 transition"
+            >
+              Start for free
+            </Link>
+            <Link
+              to="/auth/sign-in"
+              className="w-full text-center px-4 py-2 rounded-md font-medium text-sm border border-gray-200 hover:bg-gray-100 transition"
+            >
+              Sign in
+            </Link>
+          </div>
+
+          <ul className="flex flex-col gap-2 w-full">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="product" key="product">
+                <AccordionTrigger className="cursor-pointer text-left px-4 py-2 font-medium hover:bg-gray-100 hover:no-underline rounded-md transition">
+                  Product
+                </AccordionTrigger>
+                <AccordionContent className="text-left">
+                  <ul className="w-full px-2 py-1">
+                    {productLists.map((li) => (
+                      <li
+                        key={li.title}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 transition cursor-pointer"
+                      >
+                        <span className="text-lg border rounded-md p-1">
+                          {li.icon}
+                        </span>
+                        <div className="text-left">
+                          <div className="font-medium text-sm">{li.title}</div>
+                          <div className="text-xs text-gray-500">{li.desc}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="resources" key="resources">
+                <AccordionTrigger className="cursor-pointer text-left px-4 py-2 font-medium hover:bg-gray-100 hover:no-underline rounded-md transition">
+                  Resources
+                </AccordionTrigger>
+                <AccordionContent className="text-left ">
+                  <ul className="w-full px-2 py-1">
+                    {resourceLists.map((li) => (
+                      <li
+                        key={li.title}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 transition cursor-pointer"
+                      >
+                        <span className="text-lg">{li.icon}</span>
+                        <div className="text-left">
+                          <div className="font-medium text-sm">{li.title}</div>
+                          <div className="text-xs text-gray-500">{li.desc}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="pricing" key="pricing">
+                <AccordionTrigger className="cursor-pointer text-left px-4 py-2 font-medium hover:bg-gray-100 hover:no-underline rounded-md transition [&>svg]:hidden">
+                  Pricing
+                </AccordionTrigger>
+              </AccordionItem>
+              <AccordionItem value="blog" key="blog">
+                <AccordionTrigger className="cursor-pointer text-left px-4 py-2 font-medium hover:bg-gray-100 hover:no-underline rounded-md transition [&>svg]:hidden">
+                  Blog
+                </AccordionTrigger>
+              </AccordionItem>
+              <AccordionItem value="story" key="story">
+                <AccordionTrigger className="cursor-pointer text-left px-4 py-2 font-medium hover:bg-gray-100 hover:no-underline rounded-md transition [&>svg]:hidden">
+                  Story
+                </AccordionTrigger>
+              </AccordionItem>
+            </Accordion>
+          </ul>
+
+          <div className="flex flex-row border-t border-b justify-between items-center text-sm font-medium py-3 pl-4">
+            <p className="">Theme</p>
+            <div>Theme Change</div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

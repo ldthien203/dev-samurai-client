@@ -2,6 +2,7 @@ import { FiBox, FiPlay, FiCalendar, FiFilm } from 'react-icons/fi'
 import { IoDocumentTextOutline } from 'react-icons/io5'
 import { Button } from '@/components/ui/button'
 import { ReactNode, useState } from 'react'
+import { NavLink } from 'react-router'
 
 const features: { label: string; icon: ReactNode; image: string }[] = [
   {
@@ -44,8 +45,12 @@ const TitleSection = () => {
         and effort building your next SaaS.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-        <Button>Start for free</Button>
-        <Button variant="outline">Talk to sales</Button>
+        <Button className="cursor-pointer">
+          <NavLink to="auth/sign-up">Start for free</NavLink>
+        </Button>
+        <Button variant="outline" className="cursor-pointer">
+          Talk to sales
+        </Button>
       </div>
       <ul className="flex flex-row justify-center gap-5 pt-10 text-sm sm:text-base">
         {features.map((feature) => (
