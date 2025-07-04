@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import './App.css'
-import MainLayout from './components/MainLayout'
+import MainLayout from './layout/MainLayout'
 import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
+import { ReactNode } from 'react'
 
-const mainRouter = [
+const mainRouter: { path: string; component: ReactNode }[] = [
   { path: '/', component: <Home /> },
-  { path: '/home', component: <Home /> },
 ]
 
 function App() {
