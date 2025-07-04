@@ -1,6 +1,6 @@
 const DiagonalLineSection = () => {
   return (
-    <section className="border border-solid px-7 py-3">
+    <section className="border border-solid px-7 py-3 bg-diagonal-lines">
       <div className="w-full flex flex-row justify-between">
         <p className="leading-7 [&:not(:first-child)]:mt-6 text-gray-500 max-w-60 text-left">
           Trusted by fast-growing companies around the world

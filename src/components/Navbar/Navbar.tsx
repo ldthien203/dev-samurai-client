@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fi'
 import { LuBookOpen, LuSendHorizontal } from 'react-icons/lu'
 import { IoDocumentTextOutline } from 'react-icons/io5'
-import Logo from './Logo'
+import Logo from '../Logo'
 import { WiDaySunny } from 'react-icons/wi'
 import {
   NavigationMenu,
@@ -21,7 +21,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 
 const productLists: {
   title: string
@@ -89,6 +89,8 @@ const resourceLists: {
 ]
 
 const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+
   return (
     <section className="sticky inset-x-0 top-0 z-40 border-b bg-background py-3">
       <div className="container flex items-center justify-between mx-auto gap-5">

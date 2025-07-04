@@ -12,44 +12,32 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-white mt-16 text-left">
+    <footer className="w-full border-t bg-white text-left">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr_3fr] gap-10">
           <div className="flex flex-col gap-2 w-max max-w-3xs">
             <Logo align="left" />
-            <p className="text-sm text-muted-foreground mt-2 max-w-[30ch]">
+            <p className="text-xs text-muted-foreground mt-2 md:max-w-[30ch] sm:max-w-[20ch]">
               Our mission is to disrupt the market with AI.
             </p>
           </div>
-          <div className="grid grid-cols-4 gap-5 justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 justify-center">
             <div>
               <h4 className="font-semibold mb-2">Product</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Feature 1
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Feature 2
-                  </NavLink>
-                </li>{' '}
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Feature 3
-                  </NavLink>
-                </li>{' '}
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Feature 4
-                  </NavLink>
-                </li>{' '}
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Feature 5
-                  </NavLink>
-                </li>
+                {[
+                  'Feature 1',
+                  'Feature 2',
+                  'Feature 3',
+                  'Feature 4',
+                  'Feature 5',
+                ].map((text) => (
+                  <li key={text}>
+                    <NavLink to="#" className="hover:text-black">
+                      {text}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
@@ -120,11 +108,11 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="font-semibold mb-2">Subscribe to our newsletter</h4>
-            <form className="flex gap-2">
+            <form className="flex gap-2 justify-start">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white"
+                className="bg-white w-full sm:w-[300px] gap-30"
               />
               <Button
                 type="submit"
