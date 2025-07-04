@@ -1,12 +1,5 @@
-import Logo from '@/components/Logo'
-
 const Home = () => {
-  return (
-    <>
-      <h1>hello world</h1>
-      <Logo />
-    </>
-  )
+  return <h1>Hello World</h1>
 }
 
 export default Home
