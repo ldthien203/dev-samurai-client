@@ -3,6 +3,7 @@ import { IoDocumentTextOutline } from 'react-icons/io5'
 import { Button } from '@/components/ui/button'
 import { ReactNode, useState } from 'react'
 import { NavLink } from 'react-router'
+import { FaChevronRight } from 'react-icons/fa6'
 
 const features: { label: string; icon: ReactNode; image: string }[] = [
   {
@@ -37,14 +38,35 @@ const TitleSection = () => {
 
   return (
     <section className="border-l border-r pt-20">
-      <h1 className="scroll-m-20 text-center text-6xl lg:text-4xl sm:text-3xl font-extrabold tracking-tight text-balance">
-        Your revolutionary Next.js SaaS
+      <div className="flex items-center justify-center py-4">
+        <NavLink
+          to="#"
+          className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+        >
+          <div className="flex border items-center border-gray-300 rounded-full px-3 py-1.5 text-sm font-medium text-gray-700 bg-white shadow-sm hover:shadow-md hover:bg-gray-100 transition-shadow duration-200">
+            <div className="text-blue-600 font-semibold mr-2">New!</div>
+            <div
+              data-orientation="vertical"
+              role="none"
+              className="shrink-0 bg-gray-300 h-4 w-px mx-2"
+            ></div>
+            <span className="flex items-center gap-1">
+              Put an announcement here 🎉
+              <FaChevronRight className="ml-1 text-gray-500" />
+            </span>
+          </div>
+        </NavLink>
+      </div>
+      <h1 className="mt-6 text-center text-[48px] font-bold leading-[54px] tracking-[-1.2px] [font-kerning:none] sm:text-[56px] md:text-[64px] lg:text-[76px] lg:leading-[74px] lg:tracking-[-2px]">
+        Your revolutionary
+        <br />
+        Next.js SaaS
       </h1>
-      <p className="leading-7 text-center text-gray-500 mt-4 mb-6 max-w-2xl mx-auto">
+      <p className="mx-auto mt-3 max-w-[560px] text-balance text-center text-lg leading-[26px] text-muted-foreground sm:text-xl lg:mt-6">
         This is a demo application built with Achromatic. It will save you time
         and effort building your next SaaS.
       </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center my-6">
         <Button className="cursor-pointer">
           <NavLink to="auth/sign-up">Start for free</NavLink>
         </Button>

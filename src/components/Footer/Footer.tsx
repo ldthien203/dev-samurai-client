@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-white text-left">
+    <footer className="w-full border-t bg-white dark:bg-black text-left">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr_3fr] gap-10">
           <div className="flex flex-col gap-2 w-max max-w-3xs">
@@ -112,11 +112,11 @@ const Footer = () => {
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white w-full sm:w-[300px] gap-30"
+                className="bg-white dark:bg-gray-800 text-black dark:text-white w-full sm:w-[300px]"
               />
               <Button
                 type="submit"
-                className="bg-black text-white hover:bg-gray-900"
+                className="bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               >
                 Subscribe
               </Button>
@@ -127,7 +127,7 @@ const Footer = () => {
           <span className="text-xs text-muted-foreground ">
             © 2025 Acme. All rights reserved.
           </span>
-          <div className="flex flex-row gap-3 text-gray-500 ">
+          <div className="flex flex-row gap-3 text-gray-500 dark:hover:text-white">
             <NavLink to="#">
               <FaTwitter className="hover:text-black" />
             </NavLink>
