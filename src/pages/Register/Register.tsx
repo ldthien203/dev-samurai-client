@@ -44,7 +44,7 @@ const Register = () => {
     icon: <FiXCircle />,
   })
 
-  const { mutate: signUp, isPending, isSuccess, isError, error } = useSignUp()
+  const { mutate: signUp } = useSignUp()
   const navigate = useNavigate()
 
   const form = useForm<TSignUpInput>({
@@ -200,23 +200,6 @@ const Register = () => {
                         {passwordStatus.icon}
                         {passwordStatus.message}
                       </span>
-                      {isPending && (
-                        <span className="text-gray-500 text-sm mt-2">
-                          Processing...
-                        </span>
-                      )}
-                      {isError && (
-                        <span className="text-red-500 text-sm mt-2">
-                          {error instanceof Error
-                            ? error.message
-                            : 'Register failed'}
-                        </span>
-                      )}
-                      {isSuccess && (
-                        <span className="text-green-600 text-sm mt-2">
-                          Register successful!
-                        </span>
-                      )}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-
 import {
   Form,
   FormItem,
@@ -22,25 +21,39 @@ import { Input } from '@/components/ui/input'
 import { FcGoogle } from 'react-icons/fc'
 import { FaMicrosoft } from 'react-icons/fa'
 import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { signUpSchema } from '@/lib/schemas'
+import { signInSchema } from '@/lib/schemas'
+import { TSignInInput } from '@/types/type'
+import useSignIn from '@/hooks/useSignIn'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const { mutate: signIn } = useSignIn()
+  const navigate = useNavigate()
 
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<TSignInInput>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   })
 
-  const onSubmit = (values: z.infer<typeof signUpSchema>) => {
-    console.log(values)
+  const onSubmit = (data: TSignInInput) => {
+    signIn(data, {
+      onSuccess: () => {
+        setTimeout(() => navigate('/'), 1000)
+      },
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          console.error('Register error', error.message)
+        } else {
+          console.error('Unknown error', error)
+        }
+      },
+    })
   }
 
   return (
