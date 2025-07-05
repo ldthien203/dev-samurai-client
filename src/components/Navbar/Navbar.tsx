@@ -12,7 +12,6 @@ import {
 } from 'react-icons/fi'
 import { LuBookOpen, LuSendHorizontal } from 'react-icons/lu'
 import { IoDocumentTextOutline } from 'react-icons/io5'
-import { WiDaySunny } from 'react-icons/wi'
 import Logo from '../Logo'
 import {
   NavigationMenu,
@@ -23,15 +22,14 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { Button } from '@/components/ui/button'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { cn } from '@/lib/utils'
 import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
+import { useAuth } from '@/contexts/AuthContext'
 
 const productLists: {
   title: string
@@ -100,6 +98,7 @@ const resourceLists: {
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const { user } = useAuth()
 
   return (
     <section className="sticky inset-x-0 top-0 z-40 border-b bg-background py-3">
@@ -178,19 +177,26 @@ const Navbar = () => {
           {/* <Button className="bg-white hover:bg-gray-100">
             <WiDaySunny className="text-black" />
           </Button> */}
+          {}
           <ModeToggle />
-          <Link
-            to="/auth/sign-in"
-            className="px-4 py-1.5 rounded-md font-medium text-sm hover:bg-gray-100 transition border border-gray-200"
-          >
-            Sign in
-          </Link>
-          <Link
-            to="/auth/sign-up"
-            className="px-4 py-1.5 rounded-md font-medium text-sm bg-black text-white hover:bg-gray-900 transition"
-          >
-            Start for free
-          </Link>
+          {user ? (
+            <span>User</span>
+          ) : (
+            <>
+              <Link
+                to="/auth/sign-in"
+                className="px-4 py-1.5 rounded-md font-medium text-sm hover:bg-gray-100 transition border border-gray-200"
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/auth/sign-up"
+                className="px-4 py-1.5 rounded-md font-medium text-sm bg-black text-white hover:bg-gray-900 transition"
+              >
+                Start for free
+              </Link>
+            </>
+          )}
         </div>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}

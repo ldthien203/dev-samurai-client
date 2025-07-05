@@ -48,7 +48,7 @@ const Login = () => {
       },
       onError: (error: unknown) => {
         if (error instanceof Error) {
-          console.error('Register error', error.message)
+          console.error('Register error:', error.message)
         } else {
           console.error('Unknown error', error)
         }
