@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -11,12 +10,10 @@ import {
 } from '@/components/ui/card'
 
 import {
-  useFormField,
   Form,
   FormItem,
   FormLabel,
   FormControl,
-  FormDescription,
   FormMessage,
   FormField,
 } from '@/components/ui/form'
@@ -29,20 +26,20 @@ import { NavLink } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { formSchema } from '@/lib/schemas'
+import { signUpSchema } from '@/lib/schemas'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
-      gmail: '',
+      email: '',
       password: '',
     },
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof signUpSchema>) => {
     console.log(values)
   }
 
@@ -63,7 +60,7 @@ const Login = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
               <FormField
                 control={form.control}
-                name="gmail"
+                name="email"
                 render={({ field }) => (
                   <FormItem className="mb-5">
                     <FormLabel htmlFor="email">Email</FormLabel>

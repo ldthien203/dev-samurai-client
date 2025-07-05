@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -10,7 +9,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { FcGoogle } from 'react-icons/fc'
 import { FaMicrosoft } from 'react-icons/fa'
 import Logo from '@/components/Logo'
@@ -23,7 +21,6 @@ import {
   FiXCircle,
 } from 'react-icons/fi'
 import {
-  useFormField,
   Form,
   FormItem,
   FormLabel,
@@ -32,11 +29,12 @@ import {
   FormMessage,
   FormField,
 } from '@/components/ui/form'
-import { NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { formSchema } from '@/lib/schemas'
+import { signUpSchema } from '@/lib/schemas'
+import useSignUp from '@/hooks/useSignUp'
+import { TSignUpInput } from '@/types/type'
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -46,11 +44,14 @@ const Register = () => {
     icon: <FiXCircle />,
   })
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate: signUp, isPending, isSuccess, isError, error } = useSignUp()
+  const navigate = useNavigate()
+
+  const form = useForm<TSignUpInput>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: '',
-      gmail: '',
+      email: '',
       password: '',
     },
   })
@@ -79,8 +80,19 @@ const Register = () => {
     }
   }
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+  const onSubmit = (data: TSignUpInput) => {
+    signUp(data, {
+      onSuccess: () => {
+        setTimeout(() => navigate('/auth/sign-in'), 1000)
+      },
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          console.error('Register error', error.message)
+        } else {
+          console.error('Unknown error', error)
+        }
+      },
+    })
   }
 
   return (
@@ -124,7 +136,7 @@ const Register = () => {
               />
               <FormField
                 control={form.control}
-                name="gmail"
+                name="email"
                 render={({ field }) => (
                   <FormItem className="mb-5">
                     <FormLabel htmlFor="email">Email</FormLabel>
@@ -188,6 +200,23 @@ const Register = () => {
                         {passwordStatus.icon}
                         {passwordStatus.message}
                       </span>
+                      {isPending && (
+                        <span className="text-gray-500 text-sm mt-2">
+                          Processing...
+                        </span>
+                      )}
+                      {isError && (
+                        <span className="text-red-500 text-sm mt-2">
+                          {error instanceof Error
+                            ? error.message
+                            : 'Register failed'}
+                        </span>
+                      )}
+                      {isSuccess && (
+                        <span className="text-green-600 text-sm mt-2">
+                          Register successful!
+                        </span>
+                      )}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -197,7 +226,7 @@ const Register = () => {
                 variant="default"
                 size="lg"
                 type="submit"
-                className="w-full flex flex-wrap items-center gap-2 md:flex-row"
+                className="w-full flex flex-wrap items-center gap-2 md:flex-row cursor-pointer"
               >
                 Create account
               </Button>
@@ -215,7 +244,7 @@ const Register = () => {
             variant="outline"
             type="button"
             size="sm"
-            className="w-47/100"
+            className="w-47/100 cursor-pointer"
           >
             <FcGoogle /> Google
           </Button>
@@ -223,7 +252,7 @@ const Register = () => {
             variant="outline"
             type="button"
             size="sm"
-            className="w-47/100"
+            className="w-47/100 cursor-pointer"
           >
             <FaMicrosoft /> Microsoft
           </Button>
@@ -239,11 +268,17 @@ const Register = () => {
       </Card>
       <CardDescription className="w-full max-w-xs min-w-xs text-left text-xs pt-5 px-2">
         By signing up, you agree to our{' '}
-        <span className="underline font-small text-black">Terms of Use</span>{' '}
+        <span className="underline font-small text-black">
+          <Link to="#">Terms of Use</Link>
+        </span>{' '}
         and{' '}
-        <span className="underline font-small text-black">Privacy Policy</span>.
-        Need help?{' '}
-        <span className="underline font-small text-black">Get in touch.</span>
+        <span className="underline font-small text-black">
+          <Link to="#">Privacy Policy</Link>
+        </span>
+        . Need help?{' '}
+        <span className="underline font-small text-black">
+          <Link to="#">Get in touch.</Link>
+        </span>
       </CardDescription>
     </div>
   )
