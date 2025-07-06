@@ -1,9 +1,30 @@
-// src/context/auth/AuthProvider.tsx
+import { useContext } from 'react'
 import { useState, useEffect, useMemo, ReactNode } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { fetchMe } from './fetchMe'
+import { createContext } from 'react'
 import { TUser } from '@/types/type'
-import { AuthContext } from './AuthContext'
+import axios from 'axios'
+
+export type AuthContextType = {
+  user: TUser | null
+  token: string | null
+  login: (token: string) => void
+  logout: () => void
+  isAuthenticated: boolean
+  isLoading: boolean
+  error: unknown
+}
+
+const fetchMe = async (token: string): Promise<TUser> => {
+  const res = await axios.get('http://localhost:4000/api/me', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return res.data.data
+}
+
+export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null)
@@ -59,4 +80,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+export const useAuth = () => {
+  const context = useContext(AuthContext)
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider')
+  }
+  return context
 }

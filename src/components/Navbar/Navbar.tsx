@@ -35,15 +35,19 @@ const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Product</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="w-[360px] bg-white rounded-xl shadow-lg p-2 grid gap-1">
+                  <ul className="w-[360px] bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-2 grid gap-1">
                     {productLists.map((li) => (
-                      <li className="rounded-lg hover:bg-gray-100 transition flex items-center gap-3 p-3 cursor-pointer">
-                        <span className="bg-white rounded-lg p-2 mr-3 border border-solid border-grey-100">
+                      <li className="rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition flex items-center gap-3 p-3 cursor-pointer">
+                        <span className="bg-white dark:bg-zinc-900 rounded-lg p-2 mr-3 border border-solid border-grey-100">
                           {li.icon}
                         </span>
                         <div className="text-left">
-                          <div className="font-medium">{li.title}</div>
-                          <div className="text-xs text-gray-500">{li.desc}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">
+                            {li.title}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                            {li.desc}
+                          </div>
                         </div>
                       </li>
                     ))}
@@ -53,15 +57,19 @@ const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="w-[360px] bg-white rounded-xl shadow-lg p-2 grid gap-1">
+                  <ul className="w-[360px] bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-2 grid gap-1">
                     {resourceLists.map((li) => (
-                      <li className="rounded-lg hover:bg-gray-100 transition flex items-center gap-3 p-3 cursor-pointer">
-                        <span className="bg-white rounded-lg p-2 mr-3 border border-solid border-grey-100">
+                      <li className="rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition flex items-center gap-3 p-3 cursor-pointer">
+                        <span className="bg-white dark:bg-zinc-900 rounded-lg p-2 mr-3 border border-solid border-grey-100">
                           {li.icon}
                         </span>
                         <div className="text-left">
-                          <div className="font-medium">{li.title}</div>
-                          <div className="text-xs text-gray-500">{li.desc}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">
+                            {li.title}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                            {li.desc}
+                          </div>
                         </div>
                       </li>
                     ))}

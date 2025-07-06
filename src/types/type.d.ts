@@ -7,3 +7,7 @@ export type TUser = {
   email: string
   name: string
 }
+
+export type TSignInResponse = {accessToken: string, refreshToken: string}
+
+export type TCommonResponse<T> = {res: string, message: string, data: T}

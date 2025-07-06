@@ -11,7 +11,7 @@ const FeatureSection = () => {
         </span>
       </h2>
       <div className="border-l border-r">
-        <div className="grid grid-cols-1 md:grid-cols-3 border-b border-gray-200 divide-y md:divide-y-0 md:divide-x divide-dashed">
+        <div className="grid grid-cols-1 md:grid-cols-3  border-gray-200 divide-y md:divide-y-0 md:divide-x divide-dashed">
           <div className="flex flex-col items-start gap-4 p-10 text-left">
             <div className="w-10 h-10 flex items-center justify-center rounded-md shadow-sm bg-white border">
               <FiUserPlus className="text-gray-600" />

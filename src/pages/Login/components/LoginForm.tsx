@@ -8,9 +8,10 @@ import { TSignInInput } from '@/types/type'
 import useLogin from '@/hooks/useLogin'
 import EmailField from '../../../components/FormFields/EmailField'
 import LoginPasswordField from '../../../components/FormFields/LoginPasswordField'
+import { useSignIn } from '@/api/hooks/user.hook'
 
 const LoginForm = () => {
-  const { mutate: signIn } = useLogin()
+  const { mutate: signIn } = useSignIn()
   const navigate = useNavigate()
 
   const form = useForm<TSignInInput>({

@@ -1,20 +1,26 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  return {
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
-  },
-  server: {
-    historyApiFallback: true,
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-  },
+    define: {
+      env: JSON.stringify(env.APP_ENV),
+    },
+    server: {
+      historyApiFallback: true,
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+    },
+  }
 })
