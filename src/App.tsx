@@ -18,23 +18,23 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Routes>
-          <Route path="auth/sign-in" element={<Login />} />
-          <Route path="auth/sign-up" element={<Register />} />
-          {mainRouter.map((el) => (
-            <Route
-              key={el.path}
-              path={el.path}
-              element={
-                <AuthProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="auth/sign-in" element={<Login />} />
+            <Route path="auth/sign-up" element={<Register />} />
+            {mainRouter.map((el) => (
+              <Route
+                key={el.path}
+                path={el.path}
+                element={
                   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                     <MainLayout path={el.path}>{el.component}</MainLayout>
                   </ThemeProvider>
-                </AuthProvider>
-              }
-            />
-          ))}
-        </Routes>
+                }
+              />
+            ))}
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
   )

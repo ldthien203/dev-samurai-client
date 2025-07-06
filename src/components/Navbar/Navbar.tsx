@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fi'
 import { LuBookOpen, LuSendHorizontal } from 'react-icons/lu'
 import { IoDocumentTextOutline } from 'react-icons/io5'
+
 import Logo from '../Logo'
 import {
   NavigationMenu,
@@ -175,16 +176,15 @@ const Navbar = () => {
           </NavigationMenu>
         </div>
         <div className="items-center gap-2 hidden lg:flex">
-          {/* <Button className="bg-white hover:bg-gray-100">
-            <WiDaySunny className="text-black" />
-          </Button> */}
-          {}
           <ModeToggle />
           {user ? (
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <div className="flex flex-row justify-center items-center gap-3">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <span className="text-center">{user.name}</span>
+            </div>
           ) : (
             <>
               <Link
