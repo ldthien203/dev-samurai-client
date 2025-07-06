@@ -17,25 +17,25 @@ const mainRouter: { path: string; component: ReactNode }[] = [
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route path="auth/sign-in" element={<Login />} />
-              <Route path="auth/sign-up" element={<Register />} />
-              {mainRouter.map((el) => (
-                <Route
-                  key={el.path}
-                  path={el.path}
-                  element={
+      <BrowserRouter>
+        <Routes>
+          <Route path="auth/sign-in" element={<Login />} />
+          <Route path="auth/sign-up" element={<Register />} />
+          {mainRouter.map((el) => (
+            <Route
+              key={el.path}
+              path={el.path}
+              element={
+                <AuthProvider>
+                  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
                     <MainLayout path={el.path}>{el.component}</MainLayout>
-                  }
-                />
-              ))}
-            </Routes>
-          </AuthProvider>
-        </BrowserRouter>
-      </ThemeProvider>
+                  </ThemeProvider>
+                </AuthProvider>
+              }
+            />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   )
 }

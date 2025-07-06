@@ -26,11 +26,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { signInSchema } from '@/lib/schemas'
 import { TSignInInput } from '@/types/type'
-import useSignIn from '@/hooks/useSignIn'
+import useLogin from '@/hooks/useLogin'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
-  const { mutate: signIn } = useSignIn()
+  const { mutate: signIn } = useLogin()
   const navigate = useNavigate()
 
   const form = useForm<TSignInInput>({

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { TSignInInput } from '@/types/type'
 import { useAuth } from '@/contexts/AuthContext'
 
-const useSignIn = () => {
+const useLogin = () => {
   const { login } = useAuth()
 
   return useMutation({
@@ -27,4 +27,4 @@ const useSignIn = () => {
   })
 }
 
-export default useSignIn
+export default useLogin

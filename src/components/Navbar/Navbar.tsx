@@ -152,7 +152,7 @@ const Navbar = () => {
                   asChild
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Link to="/pricing">Pricing</Link>
+                  <Link to="/">Pricing</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -160,7 +160,7 @@ const Navbar = () => {
                   asChild
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/">Blog</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -168,7 +168,7 @@ const Navbar = () => {
                   asChild
                   className={navigationMenuTriggerStyle()}
                 >
-                  <Link to="/story">Story</Link>
+                  <Link to="/">Story</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>

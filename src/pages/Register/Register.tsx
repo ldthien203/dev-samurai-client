@@ -33,7 +33,7 @@ import { Link, NavLink, useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { signUpSchema } from '@/lib/schemas'
-import useSignUp from '@/hooks/useSignUp'
+import useRegister from '@/hooks/useRegister'
 import { TSignUpInput } from '@/types/type'
 
 const Register = () => {
@@ -44,7 +44,7 @@ const Register = () => {
     icon: <FiXCircle />,
   })
 
-  const { mutate: signUp } = useSignUp()
+  const { mutate: signUp } = useRegister()
   const navigate = useNavigate()
 
   const form = useForm<TSignUpInput>({
