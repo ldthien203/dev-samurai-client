@@ -1,41 +1,13 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useMemo,
-  useEffect,
-} from 'react'
+// src/context/auth/AuthProvider.tsx
+import { useState, useEffect, useMemo, ReactNode } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import axios from 'axios'
+import { fetchMe } from './fetchMe'
+import { TUser } from '@/types/type'
+import { AuthContext } from './AuthContext'
 
-type User = {
-  email: string
-  name: string
-}
-
-type AuthConTextType = {
-  user: User | null
-  token: string | null
-  login: (token: string) => void
-  logout: () => void
-  isAuthenticated: boolean
-}
-
-const AuthContext = createContext<AuthConTextType | undefined>(undefined)
-
-const fetchMe = async (token: string): Promise<User> => {
-  const res = await axios.get('http://localhost:4000/api/me', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  return res.data.data
-}
-
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null)
-  const [cachedUser, setCachedUser] = useState<User | null>(() => {
+  const [cachedUser, setCachedUser] = useState<TUser | null>(() => {
     const storedUser = localStorage.getItem('user')
     return storedUser ? JSON.parse(storedUser) : null
   })
@@ -88,13 +60,3 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
-
-const useAuth = () => {
-  const context = useContext(AuthContext)
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
-  return context
-}
-
-export { AuthProvider, useAuth }

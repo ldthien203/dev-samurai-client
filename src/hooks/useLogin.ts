@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { TSignInInput } from '@/types/type'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuth } from './useAuth'
 
 const useLogin = () => {
   const { login } = useAuth()
