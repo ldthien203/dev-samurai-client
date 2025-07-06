@@ -46,6 +46,7 @@ const LoginForm = () => {
           size="lg"
           type="submit"
           className="w-full flex flex-wrap items-center gap-2 md:flex-row"
+          data-testid="login-btn"
         >
           Sign In
         </Button>
