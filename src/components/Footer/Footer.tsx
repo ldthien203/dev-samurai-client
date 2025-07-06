@@ -14,14 +14,14 @@ const Footer = () => {
   return (
     <footer className="w-full border-t bg-white dark:bg-black text-left">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr_3fr] gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_auto] gap-10 items-start">
           <div className="flex flex-col gap-2 w-max max-w-3xs">
             <Logo align="left" />
             <p className="text-xs text-muted-foreground mt-2 md:max-w-[30ch] sm:max-w-[20ch]">
               Our mission is to disrupt the market with AI.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 justify-items-start">
             <div>
               <h4 className="font-semibold mb-2">Product</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
@@ -106,13 +106,13 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div>
+          <div className="w-full max-w-sm">
             <h4 className="font-semibold mb-2">Subscribe to our newsletter</h4>
             <form className="flex gap-2 justify-start">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-white dark:bg-gray-800 text-black dark:text-white w-full sm:w-[300px]"
+                className="bg-white dark:bg-gray-800 text-black dark:text-white w-full"
               />
               <Button
                 type="submit"

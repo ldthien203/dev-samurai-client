@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
-import decodeToken from '@/lib/decodeToken'
+import { useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 
 type User = {
   id: number
@@ -21,19 +22,27 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
 
-  const login = (newToken: string) => {
-    const decoded = decodeToken(newToken)
+  const queryClient = useQueryClient()
+
+  const login = async (newToken: string) => {
     setToken(newToken)
-    setUser({
-      id: decoded.id,
-      name: decoded.name,
-      email: decoded.email,
+
+    const res = await axios.get('http://localhost:4000/api/me', {
+      headers: {
+        Authorization: `Bearer ${newToken}`,
+      },
     })
+    const userInfo = res.data
+    setUser(userInfo)
+
+    queryClient.setQueryData(['me'], userInfo)
   }
 
   const logout = () => {
     setToken(null)
     setUser(null)
+
+    queryClient.removeQueries({ queryKey: ['me'] })
   }
 
   const isAuthenticated = !!token

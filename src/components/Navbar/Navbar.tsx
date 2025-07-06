@@ -30,6 +30,7 @@ import {
 } from '@/components/ui/accordion'
 import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
 import { useAuth } from '@/contexts/AuthContext'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const productLists: {
   title: string
@@ -180,7 +181,10 @@ const Navbar = () => {
           {}
           <ModeToggle />
           {user ? (
-            <span>User</span>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           ) : (
             <>
               <Link
