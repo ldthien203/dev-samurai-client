@@ -45,7 +45,7 @@ const LoginForm = () => {
           variant="default"
           size="lg"
           type="submit"
-          className="w-full flex flex-wrap items-center gap-2 md:flex-row"
+          className="w-full flex flex-wrap items-center gap-2 md:flex-row cursor-pointer"
           data-testid="login-btn"
         >
           Sign In

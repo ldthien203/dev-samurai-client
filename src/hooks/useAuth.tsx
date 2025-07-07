@@ -41,7 +41,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [query.data, query.error])
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem('accessToken')
+    if (storedToken) {
+      setToken(storedToken)
+    }
+  }, [])
+
   const login = (newToken: string) => {
+    localStorage.setItem('accessToken', newToken)
     setToken(newToken)
   }
 

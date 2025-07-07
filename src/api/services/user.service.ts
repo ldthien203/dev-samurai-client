@@ -27,19 +27,7 @@ export const signUp = (
     .catch((err) => console.error(err))
 }
 
-// export const fetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
-//   return AxiosInstance.get(USER_API_URL.ME.uri, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//     .then((res) => res.data)
-//     .catch((err) => {
-//       console.error(err)
-//     })
-// }
-
-export const fetchMe = (token: string): Promise<TUser> => {
+export const fetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
   return AxiosInstance.get(USER_API_URL.ME.uri, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -50,3 +38,15 @@ export const fetchMe = (token: string): Promise<TUser> => {
       console.error(err)
     })
 }
+
+// export const fetchMe = (token: string): Promise<TUser> => {
+//   return AxiosInstance.get(USER_API_URL.ME.uri, {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.data.data)
+//     .catch((err) => {
+//       console.error(err)
+//     })
+// }

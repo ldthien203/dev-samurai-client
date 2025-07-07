@@ -29,9 +29,18 @@ export const useSignUp = () => {
 
 export const useFetchMe = (token: string) => {
   return useQuery({
-    queryFn: () => fetchMe(token!),
+    queryFn: () => fetchMe(token!).then((res) => res.data),
     queryKey: [USER_API_URL.ME],
     enabled: !!token,
     staleTime: 1000 * 60 * 5,
   })
 }
+
+// export const useFetchMe = (token: string) => {
+//   return useQuery({
+//     queryFn: () => fetchMe(token!),
+//     queryKey: [USER_API_URL.ME],
+//     enabled: !!token,
+//     staleTime: 1000 * 60 * 5,
+//   })
+// }

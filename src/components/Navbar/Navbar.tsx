@@ -16,7 +16,7 @@ import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
 import { useAuth } from '@/hooks/useAuth'
 import NavbarMobile from './components/NavbarMobile'
 import { productLists, resourceLists } from './components/itemLists'
-import UserDropdown from './components/DropDownMenu'
+import UserDropdown from './components/UserDropdown'
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
