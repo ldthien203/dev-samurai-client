@@ -1,4 +1,8 @@
 import TestimonialCard from './components/TestimonialCard'
+import avatar1 from '@/assets/images/avatars/avatar1.webp'
+import avatar2 from '@/assets/images/avatars/avatar2.webp'
+import avatar3 from '@/assets/images/avatars/avatar3.webp'
+import avatar4 from '@/assets/images/avatars/avatar4.webp'
 
 type Testimonials = {
   id: number
@@ -20,7 +24,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Maria Rodriguez',
       title: 'Customer Success Director at Cloud Dynamics',
-      avatar: '/images/avatars/avatar1.webp',
+      avatar: avatar1,
     },
   },
   {
@@ -31,7 +35,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Sarah Kim',
       title: 'Senior Account Executive at Digital First',
-      avatar: '/images/avatars/avatar2.webp',
+      avatar: avatar2,
     },
   },
   {
@@ -42,7 +46,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Daniel Park',
       title: 'Business Operations Operations Lead at Swift Solutions',
-      avatar: '/images/avatars/avatar3.webp',
+      avatar: avatar2,
     },
   },
   {
@@ -53,7 +57,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Robert Chen',
       title: 'Sales Enablement Manager at Catalyst Group',
-      avatar: '/images/avatars/avatar4.webp',
+      avatar: avatar3,
     },
   },
 ]

@@ -12,3 +12,4 @@ export type TCommonResponse<T> = { res: string; message: string; data: T }
 export type TSignInResponse = { accessToken: string; refreshToken: string }
 export type TSignUpResponse = { name: string; email: string }
 export type TGetMeResponse = { name: string; email: string }
+export type TLogoutResponse = null

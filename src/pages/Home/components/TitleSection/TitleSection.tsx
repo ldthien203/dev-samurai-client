@@ -5,32 +5,37 @@ import { ReactNode, useState } from 'react'
 import { NavLink } from 'react-router'
 import { FaChevronRight } from 'react-icons/fa6'
 import { ROOT_PATH } from '@/constants/path'
+import feature1 from '@/assets/images/features/feature1.webp'
+import feature2 from '@/assets/images/features/feature2.webp'
+import feature3 from '@/assets/images/features/feature3.webp'
+import feature4 from '@/assets/images/features/feature4.webp'
+import feature5 from '@/assets/images/features/feature5.webp'
 
 const features: { label: string; icon: ReactNode; image: string }[] = [
   {
     label: 'Feature 1',
     icon: <FiBox />,
-    image: '/images/features/feature1.webp',
+    image: feature1,
   },
   {
     label: 'Feature 2',
     icon: <FiPlay />,
-    image: '/images/features/feature2.webp',
+    image: feature2,
   },
   {
     label: 'Feature 3',
     icon: <FiCalendar />,
-    image: '/images/features/feature3.webp',
+    image: feature3,
   },
   {
     label: 'Feature 4',
     icon: <FiFilm />,
-    image: '/images/features/feature4.webp',
+    image: feature4,
   },
   {
     label: 'Feature 5',
     icon: <IoDocumentTextOutline />,
-    image: '/images/features/feature5.webp',
+    image: feature5,
   },
 ]
 

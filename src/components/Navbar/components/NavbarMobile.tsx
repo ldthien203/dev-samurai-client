@@ -15,8 +15,16 @@ import { useLogout } from '@/api/hooks/user.hook'
 import { ROOT_PATH } from '@/constants/path'
 
 const NavbarMobile = () => {
-  const { user, isLoading } = useAuth()
-  const { mutate: logout } = useLogout()
+  const { user, isLoading, logout: logoutFn } = useAuth()
+  const { mutate: logout, isPending: logingOut } = useLogout()
+
+  const handleLogout = () => {
+    logout(undefined, {
+      onSuccess: () => {
+        logoutFn()
+      }
+    })
+  }
 
   return (
     <div className="lg:hidden w-full px-4 pb-4 pt-2 space-y-4">
@@ -140,8 +148,8 @@ const NavbarMobile = () => {
 
       {user && (
         <Button
-          onClick={() => logout()}
-          disabled={isLoading}
+          onClick={handleLogout}
+          disabled={isLoading || logingOut}
           variant="outline"
           className="w-full cursor-pointer px-3 py-2 text-sm text-red-600 
           hover:bg-red-50 dark:hover:bg-red-900/20 focus:bg-red-50 dark:focus:bg-red-900/20 transition-colors"

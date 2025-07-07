@@ -8,6 +8,7 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import { ROOT_PATH } from './constants/path'
+import { ToastContainer } from 'react-toastify'
 import './App.css'
 
 const queryClient = new QueryClient()
@@ -35,6 +36,14 @@ function App() {
               />
             ))}
           </Routes>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={true}
+            closeOnClick={false}
+            theme="light"
+          />
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>

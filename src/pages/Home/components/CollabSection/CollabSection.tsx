@@ -1,3 +1,8 @@
+import vercel from '@/assets/images/collab/vercel.png'
+import deel from '@/assets/images/collab/deel.png'
+import resend from '@/assets/images/collab/resend.png'
+import notion from '@/assets/images/collab/notion.png'
+
 const CollabSection = () => {
   return (
     <section className="border border-solid px-7 py-3 bg-diagonal-lines">
@@ -8,28 +13,28 @@ const CollabSection = () => {
         <div className="flex flex-row justify-between items-center gap-5">
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/collab/vercel.png"
+              src={vercel}
               alt="vercel-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/collab/deel.png"
+              src={deel}
               alt="deel-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/collab/resend.png"
+              src={resend}
               alt="resend-logo"
               className="w-full h-auto object-cover rounded"
             />
           </span>
           <span className="w-[20%] max-w-[120px]">
             <img
-              src="/images/collab/notion.png"
+              src={notion}
               alt="notion-logo"
               className="w-full h-auto object-cover rounded"
             />

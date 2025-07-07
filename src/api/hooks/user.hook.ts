@@ -45,7 +45,7 @@ export const useLogout = () => {
 export const useFetchMe = (token: string) => {
   return useQuery({
     queryFn: () => getFetchMe(token!).then((res) => res.data),
-    queryKey: [USER_API_URL.ME],
+    queryKey: [USER_API_URL.ME, token],
     enabled: !!token,
     staleTime: 1000 * 60 * 5,
   })
