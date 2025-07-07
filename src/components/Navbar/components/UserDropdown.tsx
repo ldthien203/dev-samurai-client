@@ -10,25 +10,35 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { useAuth } from '@/hooks/useAuth'
 import { useLogout } from '@/api/hooks/user.hook'
+import Spinner from '@/components/Spinner/Spinner'
 
 const UserDropdown = () => {
-  const { user } = useAuth()
-  const { mutate: logout } = useLogout()
+  const { user, isLoading, logout } = useAuth()
+  const { mutate: logoutApi, isPending: isLoggingOut } = useLogout()
 
   const handleLogout = () => {
-    logout()
+    logoutApi(undefined, {
+      onSuccess: () => {
+        logout()
+      },
+    })
   }
 
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center gap-3 cursor-pointer">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <span className="text-center">Welcome, {user?.name}</span>
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="flex items-center gap-3 cursor-pointer">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+
+              <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <span className="text-center">Welcome, {user?.name}</span>
+          </div>
+        )}
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
@@ -51,7 +61,7 @@ const UserDropdown = () => {
           className="cursor-pointer px-3 py-2 text-sm text-red-600 
           hover:bg-red-50 dark:hover:bg-red-900/20 focus:bg-red-50 dark:focus:bg-red-900/20 transition-colors"
         >
-          Logout
+          {isLoggingOut ? 'Logging out...' : 'Logout'}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

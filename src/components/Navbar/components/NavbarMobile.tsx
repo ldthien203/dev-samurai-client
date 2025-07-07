@@ -13,23 +13,26 @@ import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
 import { Button } from '@/components/ui/button'
 import { useLogout } from '@/api/hooks/user.hook'
 import { ROOT_PATH } from '@/constants/path'
+import Spinner from '@/components/Spinner/Spinner'
 
 const NavbarMobile = () => {
   const { user, isLoading, logout: logoutFn } = useAuth()
-  const { mutate: logout, isPending: logingOut } = useLogout()
+  const { mutate: logoutApi, isPending: isLoggingOut } = useLogout()
 
   const handleLogout = () => {
-    logout(undefined, {
+    logoutApi(undefined, {
       onSuccess: () => {
         logoutFn()
-      }
+      },
     })
   }
 
   return (
     <div className="lg:hidden w-full px-4 pb-4 pt-2 space-y-4">
       <div className="flex flex-col gap-2">
-        {user ? (
+        {isLoading ? (
+          <Spinner />
+        ) : user ? (
           <div className="flex flex-row justify-center items-center gap-3">
             <Avatar className="min-w-20 max-w-20">
               <AvatarImage
@@ -149,12 +152,12 @@ const NavbarMobile = () => {
       {user && (
         <Button
           onClick={handleLogout}
-          disabled={isLoading || logingOut}
+          disabled={isLoading || isLoggingOut}
           variant="outline"
           className="w-full cursor-pointer px-3 py-2 text-sm text-red-600 
           hover:bg-red-50 dark:hover:bg-red-900/20 focus:bg-red-50 dark:focus:bg-red-900/20 transition-colors"
         >
-          {isLoading ? 'Logging out...' : 'Logout'}
+          {isLoggingOut ? 'Logging out...' : 'Logout'}
         </Button>
       )}
     </div>

@@ -13,7 +13,7 @@ import RegisterPasswordField from '@/components/FormFields/RegisterPasswordField
 import { ROOT_PATH } from '@/constants/path'
 
 const RegisterForm = () => {
-  const { mutate: signUp } = useSignUp()
+  const { mutate: signUpApi, isSuccess } = useSignUp()
   const navigate = useNavigate()
 
   const form = useForm<TSignUpInput>({
@@ -26,9 +26,10 @@ const RegisterForm = () => {
   })
 
   const onSubmit = (data: TSignUpInput) => {
-    signUp(data, {
-      onSuccess: () => navigate(ROOT_PATH.SIGN_IN),
-
+    signUpApi(data, {
+      onSuccess: () => {
+        setTimeout(() => navigate(ROOT_PATH.SIGN_IN), 1000)
+      },
       onError: (error: unknown) => {
         if (error instanceof Error) {
           console.error('Register error', error.message)
@@ -49,10 +50,11 @@ const RegisterForm = () => {
           variant="default"
           size="lg"
           type="submit"
+          disabled={isSuccess}
           className="w-full flex flex-wrap items-center gap-2 md:flex-row cursor-pointer"
           data-testid="register-btn"
         >
-          Create account
+          {isSuccess ? 'Creating account' : 'Create account'}
         </Button>
       </form>
     </Form>

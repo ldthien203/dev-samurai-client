@@ -46,7 +46,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Daniel Park',
       title: 'Business Operations Operations Lead at Swift Solutions',
-      avatar: avatar2,
+      avatar: avatar3,
     },
   },
   {
@@ -57,7 +57,7 @@ const testimonialList: Testimonials[] = [
     author: {
       name: 'Robert Chen',
       title: 'Sales Enablement Manager at Catalyst Group',
-      avatar: avatar3,
+      avatar: avatar4,
     },
   },
 ]

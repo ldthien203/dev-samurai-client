@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
-import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { signInSchema } from '@/lib/schemas'
@@ -8,10 +7,11 @@ import { TSignInInput } from '@/types/type'
 import EmailField from '../../../components/FormFields/EmailField'
 import LoginPasswordField from '../../../components/FormFields/LoginPasswordField'
 import { useSignIn } from '@/api/hooks/user.hook'
+import { useAuth } from '@/hooks/useAuth'
 
 const LoginForm = () => {
-  const { mutate: signIn, isSuccess } = useSignIn()
-  const navigate = useNavigate()
+  const { login } = useAuth()
+  const { mutate: signInApi, isSuccess } = useSignIn()
 
   const form = useForm<TSignInInput>({
     resolver: zodResolver(signInSchema),
@@ -22,8 +22,15 @@ const LoginForm = () => {
   })
 
   const onSubmit = (data: TSignInInput) => {
-    signIn(data, {
-      onSuccess: () => navigate('/'),
+    signInApi(data, {
+      onSuccess: (res) => {
+        const { accessToken } = res.data
+        if (!accessToken || typeof accessToken !== 'string') {
+          console.error('No suitable accessToken:', res.message)
+          return
+        }
+        login(accessToken)
+      },
       onError: (error: unknown) => {
         if (error instanceof Error) {
           console.error('Register error:', error.message)

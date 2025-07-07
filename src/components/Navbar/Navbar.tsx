@@ -17,10 +17,11 @@ import NavbarMobile from './components/NavbarMobile'
 import { productLists, resourceLists } from './components/itemLists'
 import UserDropdown from './components/UserDropdown'
 import { ROOT_PATH } from '@/constants/path'
+import Spinner from '../Spinner/Spinner'
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
-  const { user } = useAuth()
+  const { user, isLoading } = useAuth()
 
   return (
     <section className="sticky inset-x-0 top-0 z-40 border-b bg-background py-3">
@@ -105,7 +106,10 @@ const Navbar = () => {
         </div>
         <div className="items-center gap-2 hidden lg:flex">
           <ModeToggle />
-          {user ? (
+
+          {isLoading ? (
+            <Spinner />
+          ) : user ? (
             <UserDropdown />
           ) : (
             <>

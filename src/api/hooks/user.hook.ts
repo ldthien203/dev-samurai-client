@@ -6,7 +6,6 @@ import {
   getFetchMe,
 } from '../services/user.service'
 import { USER_API_URL } from '../urls/user.url'
-import { useAuth } from '@/hooks/useAuth'
 
 export const useSignUp = () => {
   return useMutation({
@@ -16,29 +15,16 @@ export const useSignUp = () => {
 }
 
 export const useSignIn = () => {
-  const { login } = useAuth()
-
   return useMutation({
     mutationFn: postSignIn,
     mutationKey: [USER_API_URL.SIGN_IN],
-    onSuccess: (res) => {
-      const { accessToken } = res.data
-      if (!accessToken || typeof accessToken !== 'string') {
-        console.error('No suitable accessToken:', res.message)
-        return
-      }
-      login(accessToken)
-    },
   })
 }
 
 export const useLogout = () => {
-  const { logout } = useAuth()
-
   return useMutation({
     mutationFn: postLogout,
     mutationKey: [USER_API_URL.LOGOUT],
-    onSuccess: () => logout(),
   })
 }
 

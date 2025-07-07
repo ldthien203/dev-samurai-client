@@ -28,7 +28,17 @@ export const postSignUp = (
     .catch(handleError)
 }
 
-export const postLogout = (): Promise<void> => {
+// export const postLogout = (): Promise<void> => {
+//   return AxiosInstance.post(
+//     USER_API_URL.LOGOUT.uri,
+//     {},
+//     {
+//       withCredentials: true,
+//     }
+//   )
+// }
+
+export const postLogout = (): Promise<TCommonResponse<unknown>> => {
   return AxiosInstance.post(
     USER_API_URL.LOGOUT.uri,
     {},

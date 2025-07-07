@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = (newToken: string) => {
     localStorage.setItem('accessToken', newToken)
     setToken(newToken)
+    setTimeout(() => navigate(ROOT_PATH.DASHBOARD), 1000)
   }
 
   const logout = () => {
