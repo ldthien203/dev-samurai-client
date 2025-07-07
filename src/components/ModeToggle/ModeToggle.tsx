@@ -1,4 +1,4 @@
-import { useTheme } from '@/components/ThemeProvider/ThemeProvider'
+import { useTheme } from '@/hooks/useDarkTheme'
 import { Button } from '@/components/ui/button'
 import { FaMoon } from 'react-icons/fa'
 import { WiDaySunny } from 'react-icons/wi'

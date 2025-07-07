@@ -1,9 +1,10 @@
 import { useContext } from 'react'
-import { useState, useEffect, useMemo, ReactNode } from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createContext } from 'react'
 import { TUser } from '@/types/type'
-import axios from 'axios'
+import { useFetchMe } from '@/api/hooks/user.hook'
+import { fetchMe } from '@/api/services/user.service'
 
 export type AuthContextType = {
   user: TUser | null
@@ -13,15 +14,6 @@ export type AuthContextType = {
   isAuthenticated: boolean
   isLoading: boolean
   error: unknown
-}
-
-const fetchMe = async (token: string): Promise<TUser> => {
-  const res = await axios.get('http://localhost:4000/api/me', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  return res.data.data
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -34,13 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   })
 
   const queryClient = useQueryClient()
-
-  const query = useQuery({
-    queryKey: ['me'],
-    queryFn: () => fetchMe(token!),
-    enabled: !!token,
-    staleTime: 1000 * 60 * 5,
-  })
+  const query = useFetchMe(token!)
 
   useEffect(() => {
     if (query.data) {
@@ -66,18 +52,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = !!token
 
-  const value = useMemo(
-    () => ({
-      user: query.data ?? cachedUser,
-      token,
-      login,
-      logout,
-      isAuthenticated,
-      isLoading: query.isLoading,
-      error: query.error,
-    }),
-    [query.data, cachedUser, token, query.isLoading, query.error]
-  )
+  const value = {
+    user: query.data ?? cachedUser,
+    token,
+    login,
+    logout,
+    isAuthenticated,
+    isLoading: query.isLoading,
+    error: query.error,
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

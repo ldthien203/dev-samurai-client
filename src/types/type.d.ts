@@ -8,6 +8,7 @@ export type TUser = {
   name: string
 }
 
-export type TSignInResponse = {accessToken: string, refreshToken: string}
-
-export type TCommonResponse<T> = {res: string, message: string, data: T}
+export type TCommonResponse<T> = { res: string; message: string; data: T }
+export type TSignInResponse = { accessToken: string; refreshToken: string }
+export type TSignUpResponse = { name: string; email: string }
+export type TGetMeResponse = { name: string; email: string }

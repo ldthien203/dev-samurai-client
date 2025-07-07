@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ThemeProvider } from './components/ThemeProvider/ThemeProvider'
+import { ThemeProvider } from './hooks/useDarkTheme'
 import { AuthProvider } from './hooks/useAuth'
 import MainLayout from './layout/MainLayout'
 import Home from './pages/Home/Home'
