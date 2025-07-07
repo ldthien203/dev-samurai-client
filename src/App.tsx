@@ -7,6 +7,7 @@ import MainLayout from './layout/MainLayout'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import { ROOT_PATH } from './constants/path'
 import './App.css'
 
 const queryClient = new QueryClient()
@@ -20,8 +21,8 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="auth/sign-in" element={<Login />} />
-            <Route path="auth/sign-up" element={<Register />} />
+            <Route path={ROOT_PATH.SIGN_IN} element={<Login />} />
+            <Route path={ROOT_PATH.SIGN_UP} element={<Register />} />
             {mainRouter.map((el) => (
               <Route
                 key={el.path}

@@ -10,9 +10,13 @@ import {
 } from '@/components/ui/accordion'
 import { productLists, resourceLists } from './itemLists'
 import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
+import { Button } from '@/components/ui/button'
+import { useLogout } from '@/api/hooks/user.hook'
+import { ROOT_PATH } from '@/constants/path'
 
 const NavbarMobile = () => {
-  const { user } = useAuth()
+  const { user, isLoading } = useAuth()
+  const { mutate: logout } = useLogout()
 
   return (
     <div className="lg:hidden w-full px-4 pb-4 pt-2 space-y-4">
@@ -33,14 +37,14 @@ const NavbarMobile = () => {
         ) : (
           <>
             <Link
-              to="/auth/sign-up"
+              to={ROOT_PATH.SIGN_UP}
               className="w-full text-center px-4 py-2 rounded-md font-medium text-sm
                bg-black text-white hover:bg-gray-900 dark:hover:bg-gray-800 transition"
             >
               Start for free
             </Link>
             <Link
-              to="/auth/sign-in"
+              to={ROOT_PATH.SIGN_IN}
               className="w-full text-center px-4 py-2 rounded-md font-medium text-sm
                border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
             >
@@ -133,6 +137,18 @@ const NavbarMobile = () => {
         <p className="">Theme</p>
         <ModeToggle />
       </div>
+
+      {user && (
+        <Button
+          onClick={() => logout()}
+          disabled={isLoading}
+          variant="outline"
+          className="w-full cursor-pointer px-3 py-2 text-sm text-red-600 
+          hover:bg-red-50 dark:hover:bg-red-900/20 focus:bg-red-50 dark:focus:bg-red-900/20 transition-colors"
+        >
+          {isLoading ? 'Logging out...' : 'Logout'}
+        </Button>
+      )}
     </div>
   )
 }

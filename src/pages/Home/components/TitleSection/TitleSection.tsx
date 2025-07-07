@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ReactNode, useState } from 'react'
 import { NavLink } from 'react-router'
 import { FaChevronRight } from 'react-icons/fa6'
+import { ROOT_PATH } from '@/constants/path'
 
 const features: { label: string; icon: ReactNode; image: string }[] = [
   {
@@ -68,7 +69,7 @@ const TitleSection = () => {
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center my-6">
         <Button className="cursor-pointer">
-          <NavLink to="auth/sign-up">Start for free</NavLink>
+          <NavLink to={ROOT_PATH.SIGN_UP}>Start for free</NavLink>
         </Button>
         <Button variant="outline" className="cursor-pointer">
           Talk to sales

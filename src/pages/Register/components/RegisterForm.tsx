@@ -10,6 +10,7 @@ import { TSignUpInput } from '@/types/type'
 import NameField from '../../../components/FormFields/NameField'
 import EmailField from '@/components/FormFields/EmailField'
 import RegisterPasswordField from '@/components/FormFields/RegisterPasswordField'
+import { ROOT_PATH } from '@/constants/path'
 
 const RegisterForm = () => {
   const { mutate: signUp } = useSignUp()
@@ -26,9 +27,8 @@ const RegisterForm = () => {
 
   const onSubmit = (data: TSignUpInput) => {
     signUp(data, {
-      onSuccess: () => {
-        setTimeout(() => navigate('/auth/sign-in'), 1000)
-      },
+      onSuccess: () => navigate(ROOT_PATH.SIGN_IN),
+
       onError: (error: unknown) => {
         if (error instanceof Error) {
           console.error('Register error', error.message)

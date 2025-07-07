@@ -13,6 +13,7 @@ import { Link, NavLink } from 'react-router'
 
 import RegisterForm from './components/RegisterForm'
 import SocialLoginButton from '@/components/SocialLoginButton/SocialLoginButton'
+import { ROOT_PATH } from '@/constants/path'
 
 const Register = () => {
   return (
@@ -41,7 +42,7 @@ const Register = () => {
         <CardDescription className="text-center">
           Already have an account?
           <span className="ml-2">
-            <NavLink to="/auth/sign-in" className="underline font-medium">
+            <NavLink to={ROOT_PATH.SIGN_IN} className="underline font-medium">
               Sign in
             </NavLink>
           </span>

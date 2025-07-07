@@ -5,6 +5,7 @@ import { createContext } from 'react'
 import { TUser } from '@/types/type'
 import { useFetchMe } from '@/api/hooks/user.hook'
 import { useNavigate } from 'react-router'
+import { ROOT_PATH } from '@/constants/path'
 
 export type AuthContextType = {
   user: TUser | null
@@ -57,8 +58,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken(null)
     setCachedUser(null)
     localStorage.removeItem('user')
+    localStorage.removeItem('accessToken')
     queryClient.removeQueries({ queryKey: ['me'] })
-    setTimeout(() => navigate('/auth/sign-in'), 500)
+    navigate(ROOT_PATH.SIGN_IN)
   }
 
   const isAuthenticated = !!token

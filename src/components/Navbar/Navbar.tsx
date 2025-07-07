@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router'
 import { FiMenu, FiX } from 'react-icons/fi'
-
 import Logo from '../Logo'
 import {
   NavigationMenu,
@@ -17,6 +16,7 @@ import { useAuth } from '@/hooks/useAuth'
 import NavbarMobile from './components/NavbarMobile'
 import { productLists, resourceLists } from './components/itemLists'
 import UserDropdown from './components/UserDropdown'
+import { ROOT_PATH } from '@/constants/path'
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
@@ -110,13 +110,13 @@ const Navbar = () => {
           ) : (
             <>
               <Link
-                to="/auth/sign-in"
+                to={ROOT_PATH.SIGN_IN}
                 className="px-4 py-1.5 rounded-md font-medium text-sm hover:bg-gray-100 transition border border-gray-200"
               >
                 Sign in
               </Link>
               <Link
-                to="/auth/sign-up"
+                to={ROOT_PATH.SIGN_UP}
                 className="px-4 py-1.5 rounded-md font-medium text-sm bg-black text-white hover:bg-gray-900 transition"
               >
                 Start for free

@@ -10,7 +10,7 @@ import LoginPasswordField from '../../../components/FormFields/LoginPasswordFiel
 import { useSignIn } from '@/api/hooks/user.hook'
 
 const LoginForm = () => {
-  const { mutate: signIn } = useSignIn()
+  const { mutate: signIn, isSuccess } = useSignIn()
   const navigate = useNavigate()
 
   const form = useForm<TSignInInput>({
@@ -23,9 +23,7 @@ const LoginForm = () => {
 
   const onSubmit = (data: TSignInInput) => {
     signIn(data, {
-      onSuccess: () => {
-        setTimeout(() => navigate('/'), 500)
-      },
+      onSuccess: () => navigate('/'),
       onError: (error: unknown) => {
         if (error instanceof Error) {
           console.error('Register error:', error.message)
@@ -45,10 +43,11 @@ const LoginForm = () => {
           variant="default"
           size="lg"
           type="submit"
+          disabled={isSuccess}
           className="w-full flex flex-wrap items-center gap-2 md:flex-row cursor-pointer"
           data-testid="login-btn"
         >
-          Sign In
+          {isSuccess ? 'Signing in ... ' : 'Sign In'}
         </Button>
       </form>
     </Form>
