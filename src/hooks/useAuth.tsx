@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { useState, useEffect, ReactNode } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import { createContext } from 'react'
 import { TUser } from '@/types/type'
 import { useFetchMe } from '@/api/hooks/user.hook'
-import { fetchMe } from '@/api/services/user.service'
+import { useNavigate } from 'react-router'
 
 export type AuthContextType = {
   user: TUser | null
@@ -28,6 +28,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const queryClient = useQueryClient()
   const query = useFetchMe(token!)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (query.data) {
       localStorage.setItem('user', JSON.stringify(query.data))
@@ -48,6 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setCachedUser(null)
     localStorage.removeItem('user')
     queryClient.removeQueries({ queryKey: ['me'] })
+    setTimeout(() => navigate('/auth/sign-in'), 500)
   }
 
   const isAuthenticated = !!token

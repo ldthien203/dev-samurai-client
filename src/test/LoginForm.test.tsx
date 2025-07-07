@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import LoginForm from '@/pages/Login/components/LoginForm'
 
-import { AuthProvider } from '@/contexts/auth/AuthProvider'
+import { AuthProvider } from '@/hooks/useAuth'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter } from 'react-router'
 

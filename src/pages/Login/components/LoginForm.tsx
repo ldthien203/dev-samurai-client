@@ -24,7 +24,7 @@ const LoginForm = () => {
   const onSubmit = (data: TSignInInput) => {
     signIn(data, {
       onSuccess: () => {
-        setTimeout(() => navigate('/'), 1000)
+        setTimeout(() => navigate('/'), 500)
       },
       onError: (error: unknown) => {
         if (error instanceof Error) {

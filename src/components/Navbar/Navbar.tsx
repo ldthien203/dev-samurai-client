@@ -14,9 +14,9 @@ import {
 } from '@/components/ui/navigation-menu'
 import { ModeToggle } from '@/components/ModeToggle/ModeToggle'
 import { useAuth } from '@/hooks/useAuth'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import NavbarMobile from './components/NavbarMobile'
 import { productLists, resourceLists } from './components/itemLists'
+import UserDropdown from './components/DropDownMenu'
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false)
@@ -106,13 +106,7 @@ const Navbar = () => {
         <div className="items-center gap-2 hidden lg:flex">
           <ModeToggle />
           {user ? (
-            <div className="flex flex-row justify-center items-center gap-3">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <span className="text-center">Welcome, {user.name}</span>
-            </div>
+            <UserDropdown />
           ) : (
             <>
               <Link
