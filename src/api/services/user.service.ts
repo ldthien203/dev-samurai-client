@@ -9,44 +9,36 @@ import {
 import AxiosInstance from '../axios'
 import { USER_API_URL } from '../urls/user.url'
 
-export const signIn = (
+export const postSignIn = (
   payload: TSignInInput
 ): Promise<TCommonResponse<TSignInResponse>> => {
   return AxiosInstance.post(USER_API_URL.SIGN_IN.uri, payload, {
     withCredentials: true,
-  })
-    .then((res) => res.data)
-    .catch((err) => console.error(err))
+  }).then((res) => res.data)
 }
 
-export const signUp = (
+export const postSignUp = (
   payload: TSignUpInput
 ): Promise<TCommonResponse<TSignUpResponse>> => {
-  return AxiosInstance.post(USER_API_URL.SIGN_UP.uri, payload)
-    .then((res) => res.data)
-    .catch((err) => console.error(err))
+  return AxiosInstance.post(USER_API_URL.SIGN_UP.uri, payload).then(
+    (res) => res.data
+  )
 }
 
-export const fetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
+export const postLogout = (): Promise<void> => {
+  return AxiosInstance.post(
+    USER_API_URL.LOGOUT.uri,
+    {},
+    {
+      withCredentials: true,
+    }
+  )
+}
+
+export const getFetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
   return AxiosInstance.get(USER_API_URL.ME.uri, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => res.data)
-    .catch((err) => {
-      console.error(err)
-    })
+  }).then((res) => res.data)
 }
-
-// export const fetchMe = (token: string): Promise<TUser> => {
-//   return AxiosInstance.get(USER_API_URL.ME.uri, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//     .then((res) => res.data.data)
-//     .catch((err) => {
-//       console.error(err)
-//     })
-// }

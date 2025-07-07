@@ -1,13 +1,25 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { fetchMe, signIn, signUp } from '../services/user.service'
+import {
+  postSignUp,
+  postSignIn,
+  postLogout,
+  getFetchMe,
+} from '../services/user.service'
 import { USER_API_URL } from '../urls/user.url'
 import { useAuth } from '@/hooks/useAuth'
+
+export const useSignUp = () => {
+  return useMutation({
+    mutationFn: postSignUp,
+    mutationKey: [USER_API_URL.SIGN_UP],
+  })
+}
 
 export const useSignIn = () => {
   const { login } = useAuth()
 
   return useMutation({
-    mutationFn: signIn,
+    mutationFn: postSignIn,
     mutationKey: [USER_API_URL.SIGN_IN],
     onSuccess: (res) => {
       const { accessToken } = res.data
@@ -20,27 +32,21 @@ export const useSignIn = () => {
   })
 }
 
-export const useSignUp = () => {
+export const useLogout = () => {
+  const { logout } = useAuth()
+
   return useMutation({
-    mutationFn: signUp,
-    mutationKey: [USER_API_URL.SIGN_UP],
+    mutationFn: postLogout,
+    mutationKey: [USER_API_URL.LOGOUT],
+    onSuccess: () => logout(),
   })
 }
 
 export const useFetchMe = (token: string) => {
   return useQuery({
-    queryFn: () => fetchMe(token!).then((res) => res.data),
+    queryFn: () => getFetchMe(token!).then((res) => res.data),
     queryKey: [USER_API_URL.ME],
     enabled: !!token,
     staleTime: 1000 * 60 * 5,
   })
 }
-
-// export const useFetchMe = (token: string) => {
-//   return useQuery({
-//     queryFn: () => fetchMe(token!),
-//     queryKey: [USER_API_URL.ME],
-//     enabled: !!token,
-//     staleTime: 1000 * 60 * 5,
-//   })
-// }

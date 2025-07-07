@@ -7,6 +7,10 @@ export const USER_API_URL = {
     uri: '/auth/sign-up',
     methods: 'POST',
   },
+  LOGOUT: {
+    uri: '/auth/logout',
+    methods: 'POST',
+  },
   ME: {
     uri: '/user/me',
     methods: 'GET',

@@ -9,9 +9,15 @@ import {
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { useAuth } from '@/hooks/useAuth'
+import { useLogout } from '@/api/hooks/user.hook'
 
 const UserDropdown = () => {
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
+  const { mutate: logout } = useLogout()
+
+  const handleLogout = () => {
+    logout()
+  }
 
   return (
     <DropdownMenu modal={false}>
@@ -41,7 +47,7 @@ const UserDropdown = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator className="my-1 h-px bg-gray-200 dark:bg-zinc-700" />
         <DropdownMenuItem
-          onClick={logout}
+          onClick={handleLogout}
           className="cursor-pointer px-3 py-2 text-sm text-red-600 
           hover:bg-red-50 dark:hover:bg-red-900/20 focus:bg-red-50 dark:focus:bg-red-900/20 transition-colors"
         >
