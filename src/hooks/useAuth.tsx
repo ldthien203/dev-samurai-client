@@ -3,9 +3,10 @@ import { useState, useEffect, ReactNode } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { createContext } from 'react'
 import { TUser } from '@/types/type'
-import { useFetchMe } from '@/api/hooks/user.hook'
 import { useNavigate } from 'react-router'
 import { ROOT_PATH } from '@/constants/path'
+import MeFetcher from '@/components/MeFetcher/MeFetcher'
+import { getFetchMe } from '@/api/services/user.service'
 
 export type AuthContextType = {
   user: TUser | null
@@ -27,20 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   })
 
   const queryClient = useQueryClient()
-  const query = useFetchMe(token!)
-
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (query.data) {
-      localStorage.setItem('user', JSON.stringify(query.data))
-      setCachedUser(query.data)
-    }
-    if (query.error) {
-      localStorage.removeItem('user')
-      setCachedUser(null)
-    }
-  }, [query.data, query.error])
 
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken')
@@ -49,10 +37,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [])
 
-  const login = (newToken: string) => {
+  const login = async (newToken: string) => {
     localStorage.setItem('accessToken', newToken)
     setToken(newToken)
-    setTimeout(() => navigate(ROOT_PATH.DASHBOARD), 1000)
+
+    try {
+      const res = await getFetchMe(newToken)
+      localStorage.setItem('user', JSON.stringify(res.data))
+      setCachedUser(res.data)
+      setTimeout(() => navigate(ROOT_PATH.DASHBOARD), 1000)
+    } catch (error) {
+      console.error('Failed to fetch user info after login:', error)
+      logout()
+    }
   }
 
   const logout = () => {
@@ -67,16 +64,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = !!token
 
   const value = {
-    user: query.data ?? cachedUser,
+    user: cachedUser,
     token,
     login,
     logout,
     isAuthenticated,
-    isLoading: query.isLoading,
-    error: query.error,
+    isLoading: false,
+    error: null,
   }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {token && <MeFetcher token={token} />}
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => {
