@@ -33,7 +33,10 @@ const Footer = () => {
                   'Feature 5',
                 ].map((text) => (
                   <li key={text}>
-                    <NavLink to="#" className="hover:text-black">
+                    <NavLink
+                      to="#"
+                      className="hover:text-black dark:hover:text-white"
+                    >
                       {text}
                     </NavLink>
                   </li>
@@ -44,22 +47,34 @@ const Footer = () => {
               <h4 className="font-semibold mb-2">Resources</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>
-                  <NavLink to="#" className="hover:text-black">
+                  <NavLink
+                    to="#"
+                    className="hover:text-black dark:hover:text-white"
+                  >
                     Contact
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="#" className="hover:text-black">
+                  <NavLink
+                    to="#"
+                    className="hover:text-black dark:hover:text-white"
+                  >
                     Roadmap <sup>↗</sup>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="#" className="hover:text-black">
+                  <NavLink
+                    to="#"
+                    className="hover:text-black dark:hover:text-white"
+                  >
                     Docs
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="#" className="hover:text-black">
+                  <NavLink
+                    to="#"
+                    className="hover:text-black dark:hover:text-white"
+                  >
                     API Reference <sup>↗</sup>
                   </NavLink>
                 </li>
@@ -68,41 +83,33 @@ const Footer = () => {
             <div>
               <h4 className="font-semibold mb-2">About</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Story
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Blog
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Careers
-                  </NavLink>
-                </li>
+                {['Story', 'Blog', 'Careers'].map((item) => (
+                  <li>
+                    <NavLink
+                      to="#"
+                      className="hover:text-black dark:hover:text-white"
+                    >
+                      {item}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Legal</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Terms of Use
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Privacy Policy
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="#" className="hover:text-black">
-                    Cookie Policy
-                  </NavLink>
-                </li>
+                {['Terms of Use', 'Privacy Policy', 'Cookie Policy'].map(
+                  (item) => (
+                    <li>
+                      <NavLink
+                        to="#"
+                        className="hover:text-black dark:hover:text-white"
+                      >
+                        {item}
+                      </NavLink>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -127,21 +134,21 @@ const Footer = () => {
           <span className="text-xs text-muted-foreground ">
             © 2025 Acme. All rights reserved.
           </span>
-          <div className="flex flex-row gap-3 text-gray-500 dark:hover:text-white">
+          <div className="flex flex-row gap-3 text-gray-500">
             <NavLink to="#">
-              <FaTwitter className="hover:text-black" />
+              <FaTwitter className="hover:text-black dark:hover:text-white" />
             </NavLink>
             <NavLink to="#">
-              <FaLinkedin className="hover:text-black" />
+              <FaLinkedin className="hover:text-black dark:hover:text-white" />
             </NavLink>
             <NavLink to="#">
-              <FaFacebook className="hover:text-black" />
+              <FaFacebook className="hover:text-black dark:hover:text-white" />
             </NavLink>
             <NavLink to="#">
-              <FaInstagramSquare className="hover:text-black" />
+              <FaInstagramSquare className="hover:text-black dark:hover:text-white" />
             </NavLink>
             <NavLink to="#">
-              <FaTiktok className="hover:text-black" />
+              <FaTiktok className="hover:text-black dark:hover:text-white" />
             </NavLink>
           </div>
         </div>
