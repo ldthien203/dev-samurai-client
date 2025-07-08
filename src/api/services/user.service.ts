@@ -40,6 +40,7 @@ export const postLogout = (): Promise<TCommonResponse<unknown>> => {
 
 export const getFetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
   return AxiosInstance.get(USER_API_URL.ME.uri, {
+    withCredentials: true,
     headers: {
       Authorization: `Bearer ${token}`,
     },
