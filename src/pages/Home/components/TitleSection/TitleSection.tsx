@@ -87,8 +87,8 @@ const TitleSection = () => {
             onClick={() => setActiveImg(feature.image)}
             className={`flex flex-row gap-2 justify-between items-center select-none cursor-pointer py-2 ${
               activeImg === feature.image
-                ? 'text-black border-b border-black'
-                : 'text-gray-500'
+                ? 'text-black border-b border-black dark:text-white dark:border-white'
+                : 'text-gray-500 dark:text-gray-400'
             }`}
           >
             <span>{feature.icon}</span>

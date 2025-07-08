@@ -115,13 +115,21 @@ const Navbar = () => {
             <>
               <Link
                 to={ROOT_PATH.SIGN_IN}
-                className="px-4 py-1.5 rounded-md font-medium text-sm hover:bg-gray-100 transition border border-gray-200"
+                className="px-4 py-1.5 rounded-md font-medium text-sm 
+             border border-gray-200 text-black 
+             hover:bg-gray-100 
+             dark:text-white dark:border-gray-700 dark:hover:bg-gray-800 
+             transition"
               >
                 Sign in
               </Link>
               <Link
                 to={ROOT_PATH.SIGN_UP}
-                className="px-4 py-1.5 rounded-md font-medium text-sm bg-black text-white hover:bg-gray-900 transition"
+                className="px-4 py-1.5 rounded-md font-medium text-sm 
+             bg-black text-white 
+             hover:bg-gray-900 
+             dark:bg-white dark:text-black dark:hover:bg-gray-200 
+             transition"
               >
                 Start for free
               </Link>

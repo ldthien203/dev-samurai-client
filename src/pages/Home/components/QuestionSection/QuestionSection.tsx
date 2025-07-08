@@ -54,7 +54,7 @@ const QuestionSection = () => {
           </h2>
           <p className="mt-6 text-muted-foreground md:block lg:max-w-[75%]">
             Haven't found what you're looking for? Try{' '}
-            <span className="underline hover:text-black">
+            <span className="underline hover:text-black dark:hover:text-white">
               <NavLink to="#">contacting</NavLink>
             </span>{' '}
             us, we are glad to help.
