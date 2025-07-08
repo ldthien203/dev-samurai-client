@@ -9,6 +9,8 @@ import {
 import AxiosInstance from '../axios'
 import { USER_API_URL } from '../urls/user.url'
 import { handleError } from '../error'
+import { openNotification } from '@/lib/toaster'
+import { ENotificationType } from '@/constants/enum'
 
 export const postSignIn = (
   payload: TSignInInput
@@ -16,7 +18,10 @@ export const postSignIn = (
   return AxiosInstance.post(USER_API_URL.SIGN_IN.uri, payload, {
     withCredentials: true,
   })
-    .then((res) => res.data)
+    .then((res) => {
+      openNotification(ENotificationType.SUCCESS, res.data.message)
+      return res.data
+    })
     .catch(handleError)
 }
 
@@ -24,7 +29,10 @@ export const postSignUp = (
   payload: TSignUpInput
 ): Promise<TCommonResponse<TSignUpResponse>> => {
   return AxiosInstance.post(USER_API_URL.SIGN_UP.uri, payload)
-    .then((res) => res.data)
+    .then((res) => {
+      openNotification(ENotificationType.SUCCESS, res.data.message)
+      return res.data
+    })
     .catch(handleError)
 }
 
@@ -35,7 +43,10 @@ export const postLogout = (): Promise<TCommonResponse<unknown>> => {
     {
       withCredentials: true,
     }
-  )
+  ).then((res) => {
+    openNotification(ENotificationType.SUCCESS, res.data.message)
+    return res.data
+  })
 }
 
 export const getFetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
@@ -45,6 +56,9 @@ export const getFetchMe = (token: string): Promise<TCommonResponse<TUser>> => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.data)
+    .then((res) => {
+      openNotification(ENotificationType.SUCCESS, res.data.message)
+      return res.data
+    })
     .catch(handleError)
 }

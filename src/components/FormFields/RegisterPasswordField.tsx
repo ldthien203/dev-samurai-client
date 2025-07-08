@@ -52,7 +52,7 @@ const RegisterPasswordField = ({ control }: TProps) => {
     <FormField
       control={control}
       name="password"
-      render={({ field }) => (
+      render={({ field, fieldState }) => (
         <FormItem className="mb-5">
           <FormLabel htmlFor="password">Password</FormLabel>
           <FormControl>
@@ -82,14 +82,16 @@ const RegisterPasswordField = ({ control }: TProps) => {
               </span>
             </div>
           </FormControl>
-          <FormDescription>
-            <span
-              className={`flex items-center gap-2 text-sm text-gray-500 ${passwordStatus.color}`}
-            >
-              {passwordStatus.icon}
-              {passwordStatus.message}
-            </span>
-          </FormDescription>
+          {!fieldState.error && (
+            <FormDescription>
+              <span
+                className={`flex items-center gap-2 text-sm text-gray-500 ${passwordStatus.color}`}
+              >
+                {passwordStatus.icon}
+                {passwordStatus.message}
+              </span>
+            </FormDescription>
+          )}
           <FormMessage />
         </FormItem>
       )}

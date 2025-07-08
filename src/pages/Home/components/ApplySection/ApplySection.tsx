@@ -6,7 +6,7 @@ const ApplySection = () => {
       <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 pb-5">
         Ready to start?
       </h2>
-      <Button>Start for free</Button>
+      <Button className="cursor-pointer">Start for free</Button>
     </section>
   )
 }

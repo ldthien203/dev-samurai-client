@@ -63,16 +63,16 @@ const TitleSection = () => {
           </div>
         </NavLink>
       </div>
-      <h1 className="mt-6 text-center text-[48px] font-bold leading-[54px] tracking-[-1.2px] [font-kerning:none] sm:text-[56px] md:text-[64px] lg:text-[76px] lg:leading-[74px] lg:tracking-[-2px]">
+      <h1 className="mt-6 text-center text-[48px] font-bold leading-[54px] tracking-[-1.2px] [font-kerning:none] sm:text-[56px] md:text-[64px] lg:text-[76px] lg:leading-[74px] lg:tracking-[-2px] px-5">
         Your revolutionary
         <br />
         Next.js SaaS
       </h1>
-      <p className="mx-auto mt-3 max-w-[560px] text-balance text-center text-lg leading-[26px] text-muted-foreground sm:text-xl lg:mt-6">
+      <p className="mx-auto mt-3 max-w-[560px] text-balance text-center text-lg leading-[26px] text-muted-foreground sm:text-xl lg:mt-6 px-5">
         This is a demo application built with Achromatic. It will save you time
         and effort building your next SaaS.
       </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center my-6">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center my-6 px-10">
         <Button className="cursor-pointer">
           <NavLink to={ROOT_PATH.SIGN_UP}>Start for free</NavLink>
         </Button>
