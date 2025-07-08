@@ -48,17 +48,17 @@ const Register = () => {
           </span>
         </CardDescription>
       </Card>
-      <CardDescription className="w-full max-w-xs min-w-xs text-left text-xs pt-5 px-2">
+      <CardDescription className="w-full max-w-xs min-w-xs text-left text-xs pt-5 px-2 text-gray-600 dark:text-gray-400">
         By signing up, you agree to our{' '}
-        <span className="underline font-small text-black">
+        <span className="underline font-small text-black dark:text-white">
           <Link to="#">Terms of Use</Link>
         </span>{' '}
         and{' '}
-        <span className="underline font-small text-black">
+        <span className="underline font-small text-black dark:text-white">
           <Link to="#">Privacy Policy</Link>
         </span>
         . Need help?{' '}
-        <span className="underline font-small text-black">
+        <span className="underline font-small text-black dark:text-white">
           <Link to="#">Get in touch.</Link>
         </span>
       </CardDescription>

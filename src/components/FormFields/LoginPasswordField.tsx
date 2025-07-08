@@ -28,7 +28,7 @@ const PasswordField = ({ control }: TProps) => {
             Password
             <NavLink
               to="#"
-              className="ml-auto inline-block font-normal text-sm underline-offset-4 hover:underline text-black underline"
+              className="ml-auto inline-block font-normal text-sm underline-offset-4 hover:underline text-black dark:text-white underline"
             >
               Forgot password?
             </NavLink>
@@ -60,8 +60,6 @@ const PasswordField = ({ control }: TProps) => {
         </FormItem>
       )}
     />
-
-    
   )
 }
 
